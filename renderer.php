@@ -48,7 +48,6 @@ class format_collapsibleweeks_renderer extends format_section_renderer_base {
      * @param array $modnamesused (argument not used)
      */
     public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
-        global $PAGE;
 
         if (!isset($course->coursedisplay)) {
             $course->coursedisplay = COURSE_DISPLAY_SINGLEPAGE;
@@ -73,7 +72,7 @@ class format_collapsibleweeks_renderer extends format_section_renderer_base {
         foreach ($modinfo->get_section_info_all() as $section => $thissection) {
             if ($section == 0) {
                 // 0-section is displayed a little different then the others.
-                if ($thissection->summary or !empty($modinfo->sections[0]) or $PAGE->user_is_editing()) {
+                if ($thissection->summary or !empty($modinfo->sections[0]) or $this->page->user_is_editing()) {
                     $this->page->requires->strings_for_js(array('collapseall', 'expandall'), 'moodle');
                     $modules = $this->courserenderer->course_section_cm_list($course, $thissection, 0);
                     echo $this->section_header($thissection, $course, false, 0);
@@ -113,7 +112,7 @@ class format_collapsibleweeks_renderer extends format_section_renderer_base {
             echo $this->section_footer();
         }
 
-        if ($PAGE->user_is_editing() and has_capability('moodle/course:update', $context)) {
+        if ($this->page->user_is_editing() and has_capability('moodle/course:update', $context)) {
             // Print stealth sections if present.
             foreach ($modinfo->get_section_info_all() as $section => $thissection) {
                 if ($section <= $numsections or empty($modinfo->sections[$section])) {
@@ -191,7 +190,6 @@ class format_collapsibleweeks_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     protected function section_header($section, $course, $onsectionpage, $sectionreturn=null) {
-        global $PAGE;
 
         $o = '';
         $sectionstyle = '';
@@ -258,7 +256,7 @@ class format_collapsibleweeks_renderer extends format_section_renderer_base {
         if ($hasnamenotsecpg || $hasnamesecpg) {
             $classes = '';
         }
-        if (!$PAGE->user_is_editing()) {
+        if (!$this->page->user_is_editing()) {
             $sectionname = html_writer::tag('span', $this->section_title_without_link($section, $course),
                 array('class' => 'sectionname'));
             // Add collapse toggle.
