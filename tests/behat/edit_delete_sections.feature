@@ -61,7 +61,7 @@ Feature: Sections can be edited and deleted in collapsibleweeks format
   Scenario: Inline edit week name in collapsibleweeks format
     When I click on "Edit week name" "link" in the "li#section-1" "css_element"
     And I set the field "New name for week 1 May - 7 May" to "Midterm evaluation"
-    And I press key "13" in the field "New name for week 1 May - 7 May"
+    And I press enter
     Then I should not see "1 May - 7 May" in the "region-main" "region"
     And "New name for week" "field" should not exist
     And I should see "Midterm evaluation" in the "li#section-1" "css_element"

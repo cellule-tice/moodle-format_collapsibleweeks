@@ -23,8 +23,6 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Cloned from format_weeks, only class name and reference to weeks format changed.
  *
@@ -38,7 +36,7 @@ class format_collapsibleweeks_observer_testcase extends advanced_testcase {
     /**
      * Test setup.
      */
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest();
     }
 
