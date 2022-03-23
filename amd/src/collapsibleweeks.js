@@ -14,9 +14,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Javascript controller for the "Actions" panel at the bottom of the page.
+ * AMD module for the collapsible sections feature.
  *
- * @package    format_collapsibleweeks
+ * @module     format_collapsibleweeks
  * @author     Jean-Roch Meurisse
  * @copyright  2018 University of Namur - Cellule TICE
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -28,6 +28,9 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
 
     /**
      * Update toggles state of current course in browser storage.
+     * @param {number} course The current course
+     * @param {array} toggles The list of open sections
+     * @param {String} storage The configured storage type (local/session)
      */
     var setState = function(course, toggles, storage) {
         if (storage == 'local') {
@@ -39,6 +42,8 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
 
     /**
      * Update toggles state of current course in browser storage.
+     * @param {number} course The current course
+     * @param {String} storage The configured storage type (local/session)
      */
     var getState = function(course, storage) {
         var toggles;
