@@ -236,7 +236,7 @@ class format_collapsibleweeks_renderer extends format_section_renderer_base {
         $o .= html_writer::start_tag('li', array('id' => 'section-' . $section->section,
             'class' => 'section main clearfix' . $sectionstyle, 'role' => 'region',
             'aria-labelledby' => "sectionid-{$section->id}-title"));
-        
+
         $leftcontent = $this->section_left_content($section, $course, $onsectionpage);
         $o .= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
 
